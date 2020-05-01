@@ -1,28 +1,26 @@
 class Brave
+  attr_reader :name, :offense, :defense
+  # セッターゲッターを一括定義
+  attr_accessor :hp
 
-  def name=(name)
-    @name = name
-  end
-
-  def hp=(hp)
-    @hp = hp
-  end
-
-  def offense=(offense)
-    @offense = offense
-  end
-
-  def defense=(defense)
-    @defense = defense
+  def initialize(**params)
+    @name = params[:name]
+    @hp = params[:hp]
+    @offense = params[:offense]
+    @defense = params[:defense]
   end
 
 end
 
-# 勇者クラスをインスタンス化
-brave = Brave.new
+brave = Brave.new(name: "テリー", hp: 500, offense: 150, defense: 100)
 
-# パラメータに値を設定
-brave.name = "テリー"
-brave.hp = 500
-brave.offense = 150
-brave.defense = 100
+puts <<~TEXT
+NAME：#{brave.name}
+HP：#{brave.hp}
+OFFENSE：#{brave.offense}
+DEFENSE：#{brave.defense}
+TEXT
+
+brave.hp -= 30
+
+puts "#{brave.name}はダメージを受けた!　残りHPは#{brave.hp}だ"
